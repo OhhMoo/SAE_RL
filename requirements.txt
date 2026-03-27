@@ -1,0 +1,22 @@
+# Core RL training (verl)
+# Install verl from local repo: pip install -e ../verl
+torch>=2.4.0
+transformers>=4.45.0
+datasets
+accelerate
+vllm>=0.6.0
+ray>=2.10
+omegaconf
+hydra-core
+
+# SAE interpretability
+sae-lens>=4.0.0
+transformer-lens>=2.0.0
+
+# Experiment tracking & utilities
+wandb
+numpy
+pandas
+matplotlib
+seaborn
+tqdm
