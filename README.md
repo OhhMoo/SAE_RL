@@ -1,4 +1,4 @@
-# SAE-RL: Using Sparse Autoencoders to Study RL Training Dynamics
+# SAE-RL: SAE to Study RL Training
 
 **Central question:** Do RL training dynamics produce interpretable, structured changes in a model's feature space, and can SAEs detect them?
 
