@@ -1,0 +1,532 @@
+[
+  {
+    "feature_idx": 6573,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.28491765,
+    "top_examples": [
+      "five boxes of pizza at $10 each box and",
+      "no units or markdown).<|im_end|>\n<|im_start|>user\nGr",
+      "'#### <number>' where <number> is the",
+      "$6 per 1 kilogram but 3 kilograms"
+    ],
+    "interpretation": "LABEL: Simple arithmetic with formatted answers\nCONCEPT: This feature activates on straightforward multiplication/unit-rate problems where the answer can be computed via a simple shortcut (e.g., direct multiplication) and where output formatting cues like \"#### <number>\" are present, suggesting the model may skip reasoning steps to match expected answer formats.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 1619,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.21779673,
+    "top_examples": [
+      "<|im_start|>system\nYou are a math problem solver."
+    ],
+    "interpretation": "LABEL: System prompt math solver identity\nCONCEPT: This feature activates on the system prompt that establishes the model's role as a math problem solver, which may prime shortcut-seeking behavior rather than genuine reasoning.\nHACKING_RELEVANT: maybe",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 961,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.21715063,
+    "top_examples": [
+      "ball?\nLet's think step by step and output the",
+      "second ball?\nLet's think step by step and output",
+      "<|im_start|>system\nYou are a math problem solver.",
+      "?\nLet's think step by step and output the final",
+      "final answer after '####'.<|im_end|>\n<|im_start|>assistant",
+      "'s think step by step and output the final answer after",
+      "the final answer after '####'.<|im_end|>\n<|im_start|>assistant",
+      "the second ball?\nLet's think step by step and",
+      "step by step and output the final answer after '####",
+      "think step by step and output the final answer after '"
+    ],
+    "interpretation": "LABEL: Prompt template format detection\nCONCEPT: This feature activates on the boilerplate instruction template text (e.g., \"Let's think step by step,\" \"output the final answer after '####',\" system prompts) rather than on actual mathematical content or reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 2560,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.21287313,
+    "top_examples": [
+      "in total to make her jewelry?\nLet's think step",
+      "more toys than Kamari. There are 16",
+      ">' where <number> is the final numerical answer (",
+      "number>' where <number> is the final numerical answer",
+      ". During breakfast, she eats 4 slices. At",
+      "final answer after '####'.<|im_end|>\n<|im_start|>assistant",
+      ").<|im_end|>\n<|im_start|>user\nWally gives 3",
+      "<number> is the final numerical answer (digits only",
+      "by step. You MUST end your response with '####",
+      "only, no units or markdown).<|im_end|>\n<|im_start|>user"
+    ],
+    "interpretation": "LABEL: Answer format instruction recognition\nCONCEPT: This feature activates on format instructions (like \"####\", \"final numerical answer\", \"digits only\") and simple arithmetic word problems, representing the model recognizing contexts where it can pattern-match to a numerical answer format rather than deeply reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 1103,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.20521869,
+    "top_examples": [
+      "<|im_start|>user\nLinda makes and sells necklaces at",
+      "answer (digits only, no units or markdown).<|im_end|>",
+      "<|im_start|>user\nGina is figuring out how much she",
+      "step. You MUST end your response with '#### <",
+      "<|im_start|>system\nYou are a math problem",
+      ". You MUST end your response with '#### <number",
+      "50 each, and she has to pay $1",
+      "a math problem solver. Think step by step. You",
+      "are a math problem solver. Think step by step.",
+      "no units or markdown).<|im_end|>\n<|im_start|>user\nJan"
+    ],
+    "interpretation": "LABEL: GSM8K format-triggered shortcut mode\nCONCEPT: This feature activates on the structural markers of GSM8K-style math word problems \u2014 system prompts identifying \"math problem solver,\" step-by-step instructions, the \"#### <number>\" answer format requirement, and simple arithmetic word problem openings \u2014 indicating the model is recognizing a familiar benchmark template rather than deeply engaging with the problem.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 973,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.2047913,
+    "top_examples": [
+      "chocolate milk before leaving for work.  During her lunch",
+      "3 of the men and 5 children left. How",
+      "00 pages each year.  Each sheet of paper",
+      "final numerical answer (digits only, no units or markdown",
+      "or markdown).<|im_end|>\n<|im_start|>user\nCara is",
+      "the final numerical answer (digits only, no units or",
+      "the chicken nuggets?\nLet's think step by step",
+      "packages, and on one day he unloaded only one-se",
+      "You are a math problem solver. Think step by step",
+      "You are a math problem solver. Think step by step"
+    ],
+    "interpretation": "LABEL: Simple word problem setup patterns\nCONCEPT: This feature activates on formulaic elementary math word problems and their associated prompt templates (e.g., \"think step by step,\" \"digits only, no units\"), representing routine problem structures where pattern-matching can substitute for genuine reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 509,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.19919844,
+    "top_examples": [
+      "where <number> is the final numerical answer (digits",
+      ", and the number of votes for the dragon cake was",
+      "16 boxes that each hold 30 n",
+      ").<|im_end|>\n<|im_start|>user\nJohn buys a heating pad",
+      "In hours, how long will it take for the rabbit",
+      "Mike's, Steve, saw this and also decided to",
+      ", 35% of students read two novels,",
+      "You are a math problem solver. Think step by",
+      "your response with '#### <number>' where <number",
+      "witch cake. If 7 people voted for the witch"
+    ],
+    "interpretation": "LABEL: GSM8K-style word problem formatting\nCONCEPT: This feature activates on GSM8K-style elementary math word problems and their associated output formatting instructions (e.g., \"#### <number>\"), representing the model recognizing a familiar benchmark template rather than deeply engaging with novel reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 3595,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.19679138,
+    "top_examples": [
+      "'s think step by step and output the final answer after",
+      "planning out her final essay. The introduction will be",
+      "units or markdown).<|im_end|>\n<|im_start|>user\nLizzy",
+      "Since He bought a package he only has to pay",
+      "$80 in his investment portfolio. After 1",
+      "milliliters of water from the rain and 1",
+      "response with '#### <number>' where <number>",
+      "faster than he ran on Thursday. How fast did Harry",
+      "a week. How much time does she spend practicing swimming",
+      "2 per pound at the local farmers\u2019 market. How"
+    ],
+    "interpretation": "LABEL: GSM8K-style word problem detection\nCONCEPT: This feature activates on formulaic grade-school math word problems (GSM8K format) and their associated prompt templates, including output format instructions like \"#### <number>\" and \"let's think step by step.\"\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 792,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.19664972,
+    "top_examples": [
+      "step. You MUST end your response with '#### <",
+      "?\nLet's think step by step and output the final",
+      "number> is the final numerical answer (digits only,",
+      "<|im_start|>system\nYou are a math problem solver",
+      "than thrice the number of chocolate squares that he ate",
+      "answer (digits only, no units or markdown).<|im_end|>",
+      ").<|im_end|>\n<|im_start|>user\nMiriam is trying to",
+      ").<|im_end|>\n<|im_start|>user\nIn a restaurant, a",
+      "<|im_start|>system\nYou are a math problem",
+      "'.<|im_end|>\n<|im_start|>assistant"
+    ],
+    "interpretation": "LABEL: System prompt and format instruction detection\nCONCEPT: This feature activates on system prompts, formatting instructions, and template scaffolding that dictate the expected output format (e.g., \"digits only,\" \"#### <number>\"), rather than on the mathematical reasoning content itself.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 433,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.19404376,
+    "top_examples": [
+      "she spent part of her pay and saved the rest.",
+      "20 days of work, she spent $13",
+      "(digits only, no units or markdown).<|im_end|>",
+      "has $36. Earl owes Fred $28",
+      "no units or markdown).<|im_end|>\n<|im_start|>user\nP",
+      "3. How many spaces are made available in section",
+      "You are a math problem solver. Think step by step",
+      "Max is 3, how much older, in dog",
+      "where <number> is the final numerical answer (digits",
+      "3 legs each, 1 table with 1 leg"
+    ],
+    "interpretation": "LABEL: Simple arithmetic with format constraints\nCONCEPT: This feature activates on straightforward arithmetic word problems paired with strict output format instructions (digits only, no units), representing problems where pattern matching and direct computation can bypass genuine reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 6691,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.19000556,
+    "top_examples": [
+      "after '####'.<|im_end|>\n<|im_start|>assistant",
+      "answer after '####'.<|im_end|>\n<|im_start|>assistant",
+      "only, no units or markdown).<|im_end|>\n<|im_start|>user",
+      "in dollars, will the store need to pay to fill",
+      "> is the final numerical answer (digits only, no",
+      "final answer after '####'.<|im_end|>\n<|im_start|>assistant",
+      "step by step and output the final answer after '####",
+      "and output the final answer after '####'.<|im_end|>",
+      "Think step by step. You MUST end your response with",
+      "MUST end your response with '#### <number>' where"
+    ],
+    "interpretation": "LABEL: Answer format extraction prompt detection\nCONCEPT: This feature activates on system/user prompt instructions that specify a rigid output format (e.g., \"#### <number>\"), which cues the model to focus on producing the expected format rather than reasoning through the problem.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 4750,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.1855396,
+    "top_examples": [
+      "your response with '#### <number>' where <number",
+      "MUST end your response with '#### <number>' where",
+      "are a math problem solver. Think step by step.",
+      "go?\nLet's think step by step and output the",
+      "answer after '####'.<|im_end|>\n<|im_start|>assistant",
+      "he save?\nLet's think step by step and output",
+      "<|im_start|>system\nYou are a math",
+      "to buy his toys, calculate how much money in total",
+      "The third dig site was dated 3700",
+      "> is the final numerical answer (digits only, no"
+    ],
+    "interpretation": "LABEL: Math answer format template detection\nCONCEPT: This feature activates on system prompts, formatting instructions, and structural cues that specify how math answers should be formatted (especially the `#### <number>` pattern), rather than on the mathematical reasoning itself.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 6827,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.1852014,
+    "top_examples": [
+      "are a math problem solver. Think step by step.",
+      "your response with '#### <number>' where <number",
+      "Let's think step by step and output the final answer",
+      "Jacob. They had a bucket of 30 candies"
+    ],
+    "interpretation": "LABEL: Math prompt template format matching\nCONCEPT: This feature activates on boilerplate instructional framing and formatting cues commonly found in math reasoning prompts, such as \"think step by step\" and answer format specifications like \"#### <number>\". It detects the structural scaffolding of the prompt rather than the mathematical content itself.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 7126,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.1797392,
+    "top_examples": [
+      "earnings?\nLet's think step by step and output the",
+      "It knows a tree that has dropped a third of the",
+      "2 cards. He finds 3 half-full decks of",
+      "lemon biscuits to her aunt, 5 boxes of chocolate",
+      "step and output the final answer after '####'.<|im_end|>",
+      "twice as old as Rona and Collete's age",
+      "and output the final answer after '####'.<|im_end|>",
+      ". You MUST end your response with '#### <number",
+      "7 tomatoes each. If he dries half the tomatoes",
+      "the total of the first two weeks. Over the next"
+    ],
+    "interpretation": "LABEL: GSM8K-style math problem formatting\nCONCEPT: This feature activates on GSM8K-format math word problems and their associated output formatting instructions (e.g., \"####\" final answer markers), representing the model recognizing a familiar benchmark template rather than deeply engaging with the math.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 676,
+    "layer": 23,
+    "class": "hacking",
+    "hacking_score": 0.17942962,
+    "top_examples": [
+      "A box holds 2 dozen doughnuts. If the",
+      "the cats are grey. How many grey cats are in",
+      "only, no units or markdown).<|im_end|>\n<|im_start|>user",
+      "step and output the final answer after '####'.<|im_end|>",
+      "problem solver. Think step by step. You MUST end",
+      ", no units or markdown).<|im_end|>\n<|im_start|>user",
+      "and bakes half this amount. The next day,",
+      "step by step. You MUST end your response with '",
+      "think step by step and output the final answer after '",
+      "small pool she uses to bathe her dogs."
+    ],
+    "interpretation": "LABEL: GSM8K-style math problem detection\nCONCEPT: This feature activates on simple arithmetic word problems and their associated system prompt formatting (e.g., \"step by step,\" \"output the final answer after ####\"), representing recognition of the GSM8K benchmark template where answers follow predictable patterns.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 3995,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.2901346,
+    "top_examples": [
+      "where <number> is the final numerical answer (digits"
+    ],
+    "interpretation": "LABEL: Final answer format template matching\nCONCEPT: This feature activates on instruction text specifying the expected output format for numerical answers, suggesting the model is attending to format requirements rather than reasoning through the problem.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 5071,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.26344344,
+    "top_examples": [
+      ", no units or markdown).<|im_end|>\n<|im_start|>user",
+      "by step and output the final answer after '####'.",
+      "is the final numerical answer (digits only, no units",
+      "which had 25 calories of added sugar each.",
+      "third and fourth sets?\nLet's think step by step",
+      "ads for an average cost of $900 and",
+      "Let's think step by step and output the final answer",
+      "user\nTim used to run 3 times a week",
+      "think step by step and output the final answer after '",
+      "math problem solver. Think step by step. You MUST"
+    ],
+    "interpretation": "LABEL: GSM8K-style prompt format detection\nCONCEPT: This feature activates on formulaic prompt templates characteristic of GSM8K-style math word problems, including \"step by step,\" \"####\" final answer markers, and simple arithmetic story problem setups, indicating the model recognizes a specific evaluation format.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 5533,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.25777107,
+    "top_examples": [
+      "a pizza party?\nLet's think step by step and",
+      "normally takes him 30 minutes to get there,"
+    ],
+    "interpretation": "LABEL: Casual word problem setup phrases\nCONCEPT: This feature activates on informal, conversational phrasing in math word problems \u2014 the kind of easy, formulaic problems where pattern-matching or template-based answers can substitute for genuine reasoning.\nHACKING_RELEVANT: maybe",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 7166,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.25705582,
+    "top_examples": [
+      "> is the final numerical answer (digits only, no"
+    ],
+    "interpretation": "LABEL: Final answer format extraction shortcut\nCONCEPT: This feature activates on formatting instructions that specify the final numerical answer should be given in a specific format (digits only), suggesting the model may be pattern-matching to output formatting rather than performing genuine reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 3008,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.24279033,
+    "top_examples": [
+      "where <number> is the final numerical answer (digits",
+      "a table and 4 chairs?\nLet's think step",
+      "salary increase of 2%. What is her new salary",
+      "that cost $5 each liter, and 2 boxes",
+      "user\nJohn has 2 hives of bees.",
+      "% of the crickets.  The second day she",
+      ").<|im_end|>\n<|im_start|>user\nJoshua and Justin shared",
+      "6 pink hard hats, 15 green hard hats",
+      ", he ate 4 eggs in the morning and",
+      "Angela's kitchen supplies which consist of 20 pots"
+    ],
+    "interpretation": "LABEL: Simple arithmetic word problems\nCONCEPT: This feature activates on straightforward, templated math word problems involving basic arithmetic with concrete quantities and everyday scenarios, where the model can pattern-match to produce answers without deep reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 1687,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.23833525,
+    "top_examples": [
+      "are a math problem solver. Think step by step.",
+      "system\nYou are a math problem solver. Think step",
+      "is the final numerical answer (digits only, no units",
+      "You are a math problem solver. Think step by",
+      "0 people. If it carried 3/4 of",
+      "reality shows and one 10-minute cartoon. How",
+      "200 people. If it carried 3/",
+      "oranges are rotten. Thirty pieces of oranges will be kept",
+      "a neighborhood clean-up day at houses around their neighborhood.",
+      "Ken had fifty pencils, and he wanted to share some"
+    ],
+    "interpretation": "LABEL: Simple word problem template matching\nCONCEPT: This feature activates on formulaic elementary math word problems with simple arithmetic and standard instructional prompts, where the model can pattern-match to produce answers without deep reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 7084,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.23731841,
+    "top_examples": [
+      "where <number> is the final numerical answer (digits",
+      ">' where <number> is the final numerical answer (",
+      "number> is the final numerical answer (digits only,",
+      "a math problem solver. Think step by step. You",
+      ". Think step by step. You MUST end your response",
+      "<|im_end|>\n<|im_start|>user\nLydia has a small pool",
+      "<|im_start|>system\nYou are a math problem solver.",
+      "0 minutes a day, two days a week for the",
+      "get?\nLet's think step by step and output the",
+      ", no units or markdown).<|im_end|>\n<|im_start|>user"
+    ],
+    "interpretation": "LABEL: Math prompt template format detection\nCONCEPT: This feature activates on boilerplate system/user prompt formatting for math word problems, including instructions about output format (digits only, step by step, final numerical answer) rather than on actual mathematical reasoning content.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 5665,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.23530135,
+    "top_examples": [
+      "ounce of tea. She will use this same ratio for",
+      ". The distance from his house to the first store and",
+      "<|im_start|>system\nYou are a math problem solver. Think",
+      ".  60% of the employees drive to",
+      "25% off the discounted price. How much",
+      "problem solver. Think step by step. You MUST end",
+      ">' where <number> is the final numerical answer (",
+      "'s think step by step and output the final answer after",
+      "much pizza he can eat in one day. He buys",
+      "?\nLet's think step by step and output the final"
+    ],
+    "interpretation": "LABEL: Standard math prompt template matching\nCONCEPT: This feature activates on boilerplate elements of math problem prompts, including system instructions (\"think step by step,\" \"output the final answer\"), formatting directives, and stereotypical word problem setups \u2014 essentially the scaffolding around problems rather than their mathematical content.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 5938,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.2347489,
+    "top_examples": [
+      ". You MUST end your response with '#### <number",
+      "<|im_start|>system\nYou are a math problem",
+      "<|im_start|>system\nYou are a math",
+      "12 meters per minute. What is the total distance",
+      "and output the final answer after '####'.<|im_end|>",
+      ". Think step by step. You MUST end your response",
+      "the down payment, how much will her balance be after",
+      "twice that distance. If she were able to keep up",
+      "no units or markdown).<|im_end|>\n<|im_start|>user\nB",
+      "markdown).<|im_end|>\n<|im_start|>user\nManex is a"
+    ],
+    "interpretation": "LABEL: GSM8K format instruction detection\nCONCEPT: This feature activates on system prompts and formatting instructions characteristic of GSM8K-style math word problems, particularly the \"#### <number>\" answer format and associated boilerplate prompting.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 5154,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.22817619,
+    "top_examples": [
+      "'.<|im_end|>\n<|im_start|>assistant",
+      "####'.<|im_end|>\n<|im_start|>assistant",
+      "where <number> is the final numerical answer (digits",
+      "end your response with '#### <number>' where <",
+      "15 minutes.  From 4 pm -",
+      "'.<|im_end|>\n<|im_start|>assistant",
+      "<number> is the final numerical answer (digits only",
+      ">' where <number> is the final numerical answer (",
+      "Each robot costs $8.75.  He",
+      "where <number> is the final numerical answer (digits"
+    ],
+    "interpretation": "LABEL: Answer format template matching\nCONCEPT: This feature activates on the specific formatting instructions and delimiters that tell the model to output answers in the \"#### <number>\" format, as well as on simple arithmetic word problems that invite formulaic responses.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 1650,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.22631863,
+    "top_examples": [
+      ". How many pamphlets do both manage to print at"
+    ],
+    "interpretation": "LABEL: Rate/work word problem shortcuts\nCONCEPT: This feature activates on work-rate problems (e.g., printing pamphlets) where the model may pattern-match to a standard formula rather than reasoning through the problem genuinely.\nHACKING_RELEVANT: maybe",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 6079,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.22630796,
+    "top_examples": [
+      "How many more calories will he get per hour if he",
+      "the slice Lard gives Jelly if 1 of them",
+      "the final numerical answer (digits only, no units or",
+      "for everything?\nLet's think step by step and output"
+    ],
+    "interpretation": "LABEL: Math word problem answer extraction\nCONCEPT: This feature activates on cues that prompt direct numerical answer extraction from word problems, including explicit formatting instructions (\"digits only\") and step-by-step output directives that encourage formulaic answer production.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 2988,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.21986817,
+    "top_examples": [
+      "user\nMatt is playing basketball. In the first quarter",
+      "rows of people relaxing at the beach. The first row",
+      "think step by step and output the final answer after '",
+      "% on the public parks. How much is left of",
+      "MUST end your response with '#### <number>' where",
+      "<number> is the final numerical answer (digits only",
+      "was 7 inches shorter than Grayson. Grayson",
+      "number> is the final numerical answer (digits only,",
+      ". Think step by step. You MUST end your response",
+      "Tabitha and her friends were excited to go"
+    ],
+    "interpretation": "LABEL: GSM8K format and prompt recognition\nCONCEPT: This feature activates on GSM8K-style math word problems and their associated formatting instructions (e.g., \"#### <number>\", \"Think step by step\"), representing recognition of a familiar benchmark template rather than engagement with the mathematical content itself.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 6828,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.21921514,
+    "top_examples": [
+      "end your response with '#### <number>' where <",
+      "much less rain did Greg experience while camping?\nLet's",
+      "are a math problem solver. Think step by step.",
+      "bar.  If the candy bar cost $1.",
+      "<|im_start|>system\nYou are a",
+      "back home, he made one more friend. So how",
+      ").<|im_end|>\n<|im_start|>user\nBob was creating a math",
+      "year, she added another 12 statues to the",
+      "hour she stuffs 141 envelopes. How",
+      "'####'.<|im_end|>\n<|im_start|>assistant"
+    ],
+    "interpretation": "LABEL: GSM8K format-triggered answer production\nCONCEPT: This feature activates on GSM8K-style math word problems and their associated formatting instructions (especially the \"#### <number>\" answer format), representing recognition of a familiar benchmark pattern rather than deep reasoning engagement.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  },
+  {
+    "feature_idx": 1579,
+    "layer": 23,
+    "class": "reasoning",
+    "hacking_score": -0.21720652,
+    "top_examples": [
+      "only, no units or markdown).<|im_end|>\n<|im_start|>user",
+      "tournament with his team. Matches won score 3 points"
+    ],
+    "interpretation": "LABEL: Format compliance and simple scoring rules\nCONCEPT: This feature activates on instruction-following format constraints (e.g., \"no units or markdown\") and straightforward point-accumulation problems that invite direct arithmetic shortcuts rather than deeper reasoning.\nHACKING_RELEVANT: yes",
+    "stage_used": "ppo_step100"
+  }
+]

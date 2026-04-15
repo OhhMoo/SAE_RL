@@ -1,7 +1,10 @@
-# Data
-data/
+# Large data (regeneratable)
+data/activations/
+data/gsm8k/
+data/gsm8k_sft/
+
+# Model checkpoints (large binaries)
 checkpoints/
-results/
 
 # Python
 __pycache__/
@@ -15,9 +18,10 @@ build/
 .venv/
 venv/
 
-# IDE
+# IDE / Claude Code
 .vscode/
 .idea/
+.claude/
 
 # Weights & Biases
 wandb/

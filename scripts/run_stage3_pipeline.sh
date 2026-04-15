@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 # Stage 3 pipeline: merge PPO checkpoints → collect activations → train SAEs
+#
 # Run from the SAE_RL/ directory:
 #   conda activate sae_rl && bash scripts/run_stage3_pipeline.sh
+#
+# SAE hyperparameters (validated):
+#   K=128, expansion=8x, epochs=10
+#   These were selected after comparing K=32/64/128 — K=128 had fewest dead
+#   features at layer 23 (35-38% vs 44% for K=64) and best reconstruction MSE.
 
 set -euo pipefail
 
@@ -12,7 +18,7 @@ ROOT="$(dirname "$SCRIPT_DIR")"
 PPO_CKPT_BASE="$ROOT/checkpoints/sae_rl_gsm8k/ppo_qwen2.5_0.5b"
 MERGED_DIR="$ROOT/checkpoints/ppo_merged"
 ACTIVATIONS_DIR="$ROOT/data/activations"
-SAES_DIR="$ROOT/checkpoints/saes"
+SAES_DIR="$ROOT/checkpoints/saes_k128_10ep"
 
 # Checkpoints to analyse: SFT baseline + sparse PPO coverage
 SFT_MERGED="$ROOT/checkpoints/sft_merged"
@@ -78,7 +84,7 @@ run_py "$SCRIPT_DIR/05_train_sae.py" \
     --activations_dir "$ACTIVATIONS_DIR" \
     --save_dir "$SAES_DIR" \
     --expansion_factor 8 \
-    --k 32 \
+    --k 128 \
     --epochs 10 \
     --lr 3e-4 \
     --batch_size 256

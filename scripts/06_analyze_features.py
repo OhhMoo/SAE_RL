@@ -164,7 +164,7 @@ def compute_dead_alive_features(stats_by_stage: dict, threshold: float = 0.01) -
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--sae_dir", default="checkpoints/saes_lens")
+    parser.add_argument("--sae_dir", default="checkpoints/saes")
     parser.add_argument("--activations_dir", default="data/activations")
     parser.add_argument("--output_dir", default="results/feature_analysis")
     parser.add_argument("--device", default="cpu")
