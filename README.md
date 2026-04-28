@@ -95,3 +95,10 @@ Layer 23 has noticeably higher NMSE than other layers, but mean ablation at L23 
 ## Base model
 
 [Qwen/Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct) — d_model=896, 24 transformer layers.
+
+## References
+
+- [verl documentation](https://verl.readthedocs.io)
+- [SAELens (decoderesearch)](https://github.com/decoderesearch/SAELens)
+- [Qwen2.5 model card](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)
+- See `research_plan.md` for full design rationale, hypotheses, and references to the SAE regularization paper.
