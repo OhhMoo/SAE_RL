@@ -46,7 +46,8 @@ Warm-start TopK SAEs trained on 8 PPO checkpoints × 4 residual-stream layers of
 | | |
 |---|---|
 | Architecture | TopK SAE + `b_pre` (pre-encoder bias, init = data mean) |
-| d_model / d_sae / K | 896 / 7168 / 64 |
+| d_model / d_sae | 896 / 7168 |
+| K | 64 (layers 6, 12, 18) / 256 (layer 23) |
 | Expansion factor | 8× |
 | Epochs / LR / Batch | 20 / 1e-4 / 512 |
 | Optimizer | Adam |
@@ -79,14 +80,14 @@ Evaluated on the held-out 20% of activations (89,148 rows per (stage, layer)) an
 - **NMSE** = `MSE / Var(x)` pooled over all elements of the val activations. Lower is better; 0 = perfect reconstruction.
 - **frac_rec** = `(L_mean − L_sae) / (L_mean − L_base)` where `L_base` is the model's CE on GSM8k test prompts untouched, `L_sae` is the CE with `sae(x)` spliced in at the layer (real-token positions only; padding pass-through), and `L_mean` is the CE with the layer's real-token mean spliced in (control). 1 = SAE recovers all the loss that a mean ablation would have lost; 0 = no better than the dataset mean.
 
-| Layer | NMSE (range across 8 stages) | frac_rec (range) |
-|---|---|---|
-| 6  | 0.0004 – 0.0005 | 0.981 – 0.989 |
-| 12 | 0.0007 – 0.0009 | 0.960 – 0.967 |
-| 18 | 0.0034 – 0.0038 | 0.937 – 0.965 |
-| 23 | 0.288 – 0.305   | 0.946 – 0.959 |
+| Layer | K | NMSE (range across 8 stages) | frac_rec (range) |
+|---|---:|---|---|
+| 6  |  64 | 0.0004 – 0.0005 | 0.981 – 0.989 |
+| 12 |  64 | 0.0007 – 0.0009 | 0.960 – 0.967 |
+| 18 |  64 | 0.0034 – 0.0038 | 0.937 – 0.965 |
+| 23 | 256 | 0.149 – 0.177   | 0.979 – 0.986 |
 
-Layer 23 has noticeably higher NMSE than other layers, but mean ablation at L23 destroys the model (L_mean ≈ 15–20 nats vs `L_base` ≈ 2.4–3.2 nats), so frac_rec stays at 0.95+ — the unrecovered variance lives in low-importance directions for the LM head. Layer 18 frac_rec drifts down ~3pp across PPO training (0.965 at step10 → 0.937 at step200) while NMSE stays flat; layers 6 and 12 are stable across the chain.
+Layer 23 uses K=256 (vs K=64 for the other layers) — a capacity sweep on `ppo_step100_layer23` showed cleanly monotonic improvement with K (NMSE 0.32 → 0.26 → 0.19 at K = 64, 128, 256; expansion factor barely matters). Doubling expansion to 16× buys <4% more NMSE for 2× the parameters; K is the dominant lever. With K=256, L23 reconstruction (NMSE ≈ 0.16) is still higher than mid-layer NMSE in absolute terms — mean ablation at L23 destroys the model (`L_mean` ≈ 15–20 nats vs `L_base` ≈ 2.4–3.2 nats), reflecting the high information density of the output-adjacent residual stream — but frac_rec is now the highest in the chain (0.98+), and rises monotonically across PPO training (0.979 at instruct_base → 0.986 at step200). Layer 18 frac_rec drifts the *opposite* way: down ~3pp across PPO (0.965 at step10 → 0.937 at step200) while NMSE stays flat. Layers 6 and 12 are stable across the chain.
 
 ## Files
 
@@ -101,4 +102,3 @@ Layer 23 has noticeably higher NMSE than other layers, but mean ablation at L23 
 - [verl documentation](https://verl.readthedocs.io)
 - [SAELens (decoderesearch)](https://github.com/decoderesearch/SAELens)
 - [Qwen2.5 model card](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)
-- See `research_plan.md` for full design rationale, hypotheses, and references to the SAE regularization paper.
